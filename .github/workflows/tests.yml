@@ -16,7 +16,9 @@ jobs:
         if: always()
         with:
           files: ./coverage/junit.xml
-      - uses: romeovs/lcov-reporter-action@v0.2.11
+      - name: Publish Code Coverage Results
+        uses: romeovs/lcov-reporter-action@v0.2.11
         if: ${{ failure() }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         with:
           lcov-file: ./coverage/lcov.info
