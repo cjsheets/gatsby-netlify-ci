@@ -19,6 +19,7 @@ jobs:
       - name: Publish Code Coverage Results
         uses: romeovs/lcov-reporter-action@v0.2.11
         if: ${{ failure() }}
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        inputs:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         with:
           lcov-file: ./coverage/lcov.info
