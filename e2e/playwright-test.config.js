@@ -1,3 +1,5 @@
+const path = require('path');
+
 const config = {
   use: {
     headless: true,
@@ -5,11 +7,8 @@ const config = {
     ignoreHTTPSErrors: true,
     video: 'on-first-retry',
   },
-  contextOptions: {
-    recordVideo: {
-      dir: 'videos/',
-    },
-  },
+  retries: 3,
+  outputDir: path.join(__dirname, '../e2e-results'),
   testMatch: /.*.e2e.js$/,
 };
 
