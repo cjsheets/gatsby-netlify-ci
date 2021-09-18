@@ -15,6 +15,6 @@ describe('Landing Page', () => {
   test('displays the correct title', async ({ page }) => {
     const title = await page.title();
 
-    expect(title).toBe('incorrect title');
+    expect(title).toBe('Gatsby Netlify CI');
   });
 });
