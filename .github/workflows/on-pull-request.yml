@@ -1,7 +1,29 @@
-name: Lint and Unit Tests
+name: CI Tests
 on: [pull_request]
 jobs:
-  test:
+  e2e-test:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - run: npx playwright install
+      - run: npm run build
+      - run: npm run e2e
+      - name: Publish E2E Recording
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: E2E Results
+          path: e2e-results
+
+  unit-test:
+    name: Run Lint and Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
