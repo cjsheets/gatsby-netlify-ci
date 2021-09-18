@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: '12'
       - run: npm install
-      - run: npx playwright install-deps
+      - run: npx playwright install
       - run: npm run build
       - run: npm run e2e
       - name: Publish E2E Recording
