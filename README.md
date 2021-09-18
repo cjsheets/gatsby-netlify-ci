@@ -1,54 +1,25 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal starter
-</h1>
+# 🤖 Continuous Integration Prototype
 
-## 🚀 Quick start
+Simple prototype of common CI patterns implemented with Gatsby, Github Actions and Netlify.
 
-1.  **Create a Gatsby site.**
+## Overview
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+A robust CI pipeline should include some variation of the following steps:
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+1. Git branch conventions
+1. Linting\*
+1. Unit Testing
+1. Acceptance Testing
+1. Monitoring
 
-2.  **Start developing.**
+\* I'd group type-checking with linting. For simplicity this project is implemented in JS instead of TS.
 
-    Navigate into your new site’s directory and start it up.
+## Setting Up Gatsby
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+This goal of this project is to focus on CI, so I tried to keep the Gatsby configuration as simple as possible.
 
-3.  **Open the code and start customizing!**
+I chose to include prettier and styled-components but not typescript to reduce boilerplate.
 
-    Your site is now running at http://localhost:8000!
-
-    Edit `src/pages/index.js` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal)
+1. Follow the Gatsby [quick start guide](https://www.gatsbyjs.com/docs/quick-start/).
+1. Setup [eslint and (optionally) prettier](https://www.gatsbyjs.com/plugins/gatsby-plugin-prettier-eslint/).
+1. Configure gatsby-config.js and gatsby-node.js

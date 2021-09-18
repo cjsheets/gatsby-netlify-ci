@@ -1,30 +1,36 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "gatsby-netlify-ci",
+    siteUrl: 'https://www.yourdomain.tld',
+    title: 'gatsby-netlify-ci',
   },
   plugins: [
-    "gatsby-plugin-netlify-cms",
-    "gatsby-plugin-styled-components",
-    "gatsby-plugin-image",
-    "gatsby-transformer-remark",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-netlify-cms',
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-image',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'steps',
+        path: `${__dirname}/content`,
       },
-      __key: "images",
     },
+    'gatsby-transformer-remark',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-plugin-prettier-eslint',
       options: {
-        name: "pages",
-        path: "./src/pages/",
+        prettier: {
+          patterns: ['**/*.{css,scss,less}', '**/*.{json,json5}', '**/*.{graphql}', '**/*.{md,mdx}', '**/*.{html}', '**/*.{yaml,yml}'],
+        },
+        eslint: {
+          patterns: '**/*.{js,jsx,ts,tsx}',
+          customOptions: {
+            fix: true,
+            cache: true,
+          },
+        },
       },
-      __key: "pages",
     },
   ],
 };
