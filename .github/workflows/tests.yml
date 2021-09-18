@@ -2,6 +2,7 @@ name: Lint and Unit Tests
 on: [pull_request]
 jobs:
   test:
+    name: Run Lint and Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
