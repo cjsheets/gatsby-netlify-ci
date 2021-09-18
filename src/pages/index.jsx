@@ -16,8 +16,6 @@ function IndexPage({ data }) {
           <li>
             <Link to={fm.slug} key={id}>
               {fm.title}
-
-
             </Link>
           </li>
         ))}
