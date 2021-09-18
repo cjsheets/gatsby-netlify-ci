@@ -1,24 +1,28 @@
-name: Unit Tests
+name: Lint and Unit Tests
 on: [pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout branch
+        uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: '12'
       - run: npm install
+      - run: npm run lint
+        id: lintAndPrettier
       - run: npm run test
-      - name: Publish Unit Test Results
+        id: unitTest
+      - name: Publish UT Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
+        if: always() && (steps.unitTest.outcome == 'success' || steps.unitTest.outcome == 'failure')
         with:
           files: ./coverage/junit.xml
-      - name: Publish Code Coverage Results
+      - name: Publish Coverage Results
         uses: romeovs/lcov-reporter-action@v0.2.11
-        if: ${{ failure() }}
+        if: always() && steps.unitTest.outcome == 'failure'
         with:
           lcov-file: ./coverage/lcov.info
           github-token: ${{ secrets.GITHUB_TOKEN }}
