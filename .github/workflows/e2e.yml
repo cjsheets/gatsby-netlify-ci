@@ -1,0 +1,22 @@
+name: E2E Tests
+on: [pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - run: npx playwright install-deps
+      - run: npm run build
+      - run: npm run e2e
+      - name: Publish E2E Recording
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: Recordings
+          path: videos/
