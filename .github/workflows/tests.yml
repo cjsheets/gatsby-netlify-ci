@@ -1,4 +1,4 @@
-name: Unit Tests
+name: Lint and Unit Tests
 on: [pull_request]
 jobs:
   test:
@@ -15,12 +15,12 @@ jobs:
         id: lintAndPrettier
       - run: npm run test
         id: unitTest
-      - name: Publish Unit Test Results
+      - name: Publish UT Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always() && steps.unitTest.outcome == 'failure'
+        if: always() && (steps.unitTest.outcome == 'success' || steps.unitTest.outcome == 'failure')
         with:
           files: ./coverage/junit.xml
-      - name: Publish Code Coverage Results
+      - name: Publish Coverage Results
         uses: romeovs/lcov-reporter-action@v0.2.11
         if: always() && steps.unitTest.outcome == 'failure'
         with:
